@@ -1,0 +1,15 @@
+{
+    "fb": {
+        "appId": "FACEBOOK_APP_ID",
+        "appSecret": "FACEBOOK_APP_SECRET",
+        "pageId": "FACEBOOK_PAGE_ID",
+        "pageAccessToken": "FACEBOOK_PAGE_ACCESS_TOKEN",
+        "appAccessToken": "FACEBOOK_APP_ACCESS_TOKEN",
+        "validationToken": "FACEBOOK_APP_VALIDATION_TOKEN",
+        "apiVersion": "v2.8"
+    },
+    "wit": {
+        "appId": "WIT_AI_APP_ID",
+        "accessToken": "WIT_AI_ACCESS_TOKEN"
+    }
+}

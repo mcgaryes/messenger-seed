@@ -1,0 +1,27 @@
+{
+    "name": "messenger-seed",
+    "version": "1.0.0",
+    "scripts": {
+        "develop": "node ./scripts/setup.js && concurrently \"nodemon chatbot.js\" \"node ./scripts/create-tunnel.js\"",
+        "start": "node chatbot.js"
+    },
+    "dependencies": {
+        "body-parser": "^1.15.0",
+        "config": "^1.20.4",
+        "ejs": "^2.4.2",
+        "express": "^4.13.4",
+        "morgan": "^1.7.0",
+        "node-uuid": "^1.4.7",
+        "node-wit": "^4.1.0",
+        "request": "^2.75.0",
+        "tracer": "^0.8.3"
+    },
+    "engines": {
+        "node": "~6.7.0"
+    },
+    "devDependencies": {
+        "concurrently": "^3.1.0",
+        "ngrok": "^2.2.3",
+        "nodemon": "^1.11.0"
+    }
+}

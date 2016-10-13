@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="TypeScriptCompiler">
+    <option name="typeScriptCompilerParams" value="-m commonjs  --out app.js" />
+    <option name="generateSourceMap" value="false" />
+    <option name="outDirectory" value="$PROJECT_DIR$/../../lab/hello-typescript/debug" />
+    <option name="mainFilePath" value="$PROJECT_DIR$/../../lab/hello-typescript/source/app/HelloTypescript.ts" />
+  </component>
+</project>
