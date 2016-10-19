@@ -1,6 +1,5 @@
 + Create New Facebook Page (optional).
 	+ Add page id to configuration
-
 + Create New Facebook Application (optional).
 	+ https://developers.facebook.com/apps/
 	+ Add app id and app secret tp configuration.
@@ -16,14 +15,12 @@
 	+ create a validation token and add it to the configration file 
 	+ in the webhooks section choose the page created in the first step and subscribe to it
 	+ get the app access token at https://developers.facebook.com/tools/access_token/
-
 + Now goto wit.ai and create a new application
-+ goto settings and grab the access token and app id and place them in the config file
-+ create a new story and name it Hello, Chatbot
-+ user says hello chatbot
-+ create intent for hello
-+ bot executes sayHello
-
-
-+ test bot
-+ goto the address of the page opened earlier with the ngrok address
++ Goto settings and grab the access token and app id and place them in the config file
++ Create a new story and name it Hello, Chatbot
+	+ User says hello chatbot
+	+ Create intent for hello
+	+ Bot executes sayHello
++ Test bot
+	+ Goto the address of the page opened earlier with the ngrok address
+	+ Click 'Message Us' and then type 'Hello' in the message input.
