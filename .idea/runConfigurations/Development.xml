@@ -6,9 +6,7 @@
       <script value="develop" />
     </scripts>
     <node-interpreter value="project" />
-    <envs>
-      <env name="NODE_ENV" value="testing" />
-    </envs>
+    <envs />
     <method />
   </configuration>
 </component>
