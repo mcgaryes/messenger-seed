@@ -1,0 +1,15 @@
+{
+    "fb": {
+        "appId": "1142585062462618",
+        "appSecret": "4859b77e837191f8f6445ec617100e6b",
+        "pageId": "189094681529369",
+        "pageAccessToken": "EAAQPLNDGFJoBAL5Vmj3Ww4cg5anU6NM47BL5deFseZBFygjXKhyCVBZBtddKUcSq3DjnwecmKQ4kGZBHAqQOfmKkAqr7gBMexiTZBwyQJQjN94qwXlu3ZAPKpelXlCNZCI7WveCA3uZAX78ZBZCpaQwLHkbLtU6rLTc4ZD",
+        "appAccessToken": "1142585062462618|zI_zfWJa_musXUdm0nvhEIBMBbQ",
+        "validationToken": "hello_chatbot_verification_token",
+        "apiVersion": "v2.8"
+    },
+    "wit": {
+        "appId": "57ffbb3e-e55a-4121-977a-323700cfa89a",
+        "accessToken": "JDDTFDIN6CHHHDDARA6MTBRHKLM5M6RB"
+    }
+}

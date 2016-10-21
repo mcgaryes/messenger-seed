@@ -9,6 +9,7 @@ const config = require('config');
 const webhook = require('./routes/webhook');
 const authorize = require('./routes/authorize');
 const index = require('./routes/index');
+const log = require('./utils/logger');
 
 /**
  * Verifies the request signature sent from facebook
@@ -34,7 +35,7 @@ function verifyRequestSignature(req, res, buf) {
         
     } else {
         
-        console.error("Couldn't validate the signature.");
+        log.error("Couldn't validate the signature.");
         
     }
 }

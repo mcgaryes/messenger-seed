@@ -18,12 +18,8 @@ class ResponseHandler {
             
             if (response.type === 'action') {
                 
-                if (response.entities.intent[0].confidence > 0.8) {
-                    log.debug(`Handling response with '${response.action}' action...`);
-                    resolve(actions[response.action](response.entities));
-                } else {
-                    reject('action had too low of confidence');
-                }
+                log.debug(`Handling response with '${response.action}' action...`);
+                resolve(actions[response.action](response.entities));
                 
             } else if (response.type === 'msg') {
                 

@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Development" type="js.build_tools.npm" factoryName="npm">
+    <package-json value="$PROJECT_DIR$/package.json" />
+    <command value="run-script" />
+    <scripts>
+      <script value="develop" />
+    </scripts>
+    <node-interpreter value="project" />
+    <envs>
+      <env name="NODE_ENV" value="testing" />
+    </envs>
+    <method />
+  </configuration>
+</component>

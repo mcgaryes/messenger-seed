@@ -9,13 +9,12 @@ const request = require('request');
 const ngrok = require('ngrok');
 const exec = require('child_process').exec;
 const log = require('../utils/logger');
-const fbConfig = config.get('fb');
 
 // ============================================================
 // === Script =================================================
 // ============================================================
 
-const API_ENDPOINT = `https://graph.facebook.com/${fbConfig.apiVersion}/${fbConfig.appId}/subscriptions`;
+const API_ENDPOINT = `https://graph.facebook.com/${config.get('fb').apiVersion}/${config.get('fb').appId}/subscriptions`;
 
 ngrok.connect({
     proto: "http",
@@ -29,11 +28,11 @@ ngrok.connect({
     request.post({
         url: API_ENDPOINT,
         qs: {
-            access_token: fbConfig.appAccessToken
+            access_token: config.get('fb').appAccessToken
         },
         form: {
             object: 'page',
-            verify_token: 'verify_token',
+            verify_token: config.get('fb').validationToken,
             callback_url: `${url}/webhook`
         }
     }, (err, resp, body) => {
