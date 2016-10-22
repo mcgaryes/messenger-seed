@@ -3,30 +3,11 @@
 const express = require('express');
 const router = express.Router();
 const config = require('config');
-const {Wit} = require('node-wit');
-const uuid = require('node-uuid');
+const util = require('util');
 const MessengerService = require('../services/messenger-service');
+const WitService = require('../services/wit-service');
 const ResponseHandler = require('../logic/response-handler');
 const log = require('../utils/logger');
-const util = require('util');
-
-function sendMessageToWit(message, sender) {
-    
-    log.debug(`Sending message '${message}' to wit...`);
-    
-    client.converse(uuid.v1(), message).then(response => {
-        
-        ResponseHandler.handle(response).then(messageToMessenger => {
-            MessengerService.sendMessageToRecipient(messageToMessenger, sender)
-                .catch(log.error);
-        }).catch(log.error);
-        
-    }).catch(log.error);
-    
-}
-
-// wit.ai client
-const client = new Wit({accessToken: config.get('wit').accessToken});
 
 /**
  * validation webhook for messenger
@@ -57,21 +38,57 @@ router.post('/webhook', (req, res) => {
             pageEntry.messaging.forEach(function (messagingEvent) {
                 
                 if (messagingEvent.message) {
+                    
                     if (messagingEvent.message.quick_reply) {
-                        sendMessageToWit(messagingEvent.message.quick_reply.payload, messagingEvent.sender.id);
+                        
+                        log.debug(`Handling quick reply...`);
+                        
+                        WitService.send(messagingEvent.message.quick_reply.payload).then(response => {
+                            
+                            ResponseHandler.handle(response).then(messageToMessenger => {
+                                MessengerService.sendMessageToRecipient(messageToMessenger, messagingEvent.sender.id).catch(log.error);
+                            }).catch(log.error);
+                            
+                        }).catch(log.error);
+                        
                     } else {
-                        sendMessageToWit(messagingEvent.message.text, messagingEvent.sender.id);
+                        
+                        log.debug(`Handling text message...`);
+                        
+                        WitService.send(messagingEvent.message.text).then(response => {
+                            
+                            ResponseHandler.handle(response).then(messageToMessenger => {
+                                MessengerService.sendMessageToRecipient(messageToMessenger, messagingEvent.sender.id).catch(log.error);
+                            }).catch(log.error);
+                            
+                        }).catch(log.error);
+                        
                     }
+                    
                 } else if (messagingEvent.postback) {
-                    sendMessageToWit(messagingEvent.postback.payload, messagingEvent.sender.id);
+                    
+                    log.debug('Handling postback...');
+                    
+                    WitService.send(messagingEvent.postback.payload).then(response => {
+                        
+                        ResponseHandler.handle(response).then(messageToMessenger => {
+                            MessengerService.sendMessageToRecipient(messageToMessenger, messagingEvent.sender.id).catch(log.error);
+                        }).catch(log.error);
+                        
+                    }).catch(log.error);
+                    
                 } else if (messagingEvent.optin) {
+                    
+                    log.debug('Handling optin...');
                     MessengerService.sendMessageToRecipient({text: "Authentication successful"}, messagingEvent.sender.id);
+                    
                 }
                 
             });
         });
         
         res.sendStatus(200);
+        
     }
     
 });
