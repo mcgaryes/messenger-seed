@@ -44,4 +44,4 @@ jspm_packages
 /config/default.json
 
 ### Jetbrains
-#/.idea
+/.idea
