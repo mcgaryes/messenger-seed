@@ -11,14 +11,16 @@ class MessengerService {
     
     /**
      * Sends a message to facebook messenger.
-     * @param message
      * @param recipientId
+     * @param message
      * @return {Promise}
      */
-    static sendMessageToRecipient(message, recipientId) {
+    static sendMessageToRecipient(recipientId, message) {
         
         return new Promise((resolve, reject) => {
     
+            
+            
             log.debug(`Sending '${JSON.stringify(message)}' to facebook...`);
             
             request({

@@ -43,25 +43,19 @@ router.post('/webhook', (req, res) => {
                         
                         log.debug(`Handling quick reply...`);
                         
-                        WitService.send(messagingEvent.message.quick_reply.payload).then(response => {
-                            
-                            ResponseHandler.handle(response).then(messageToMessenger => {
-                                MessengerService.sendMessageToRecipient(messageToMessenger, messagingEvent.sender.id).catch(log.error);
-                            }).catch(log.error);
-                            
-                        }).catch(log.error);
+                        WitService.send(messagingEvent.message.quick_reply.payload)
+                            .then(ResponseHandler.handle)
+                            .then(MessengerService.sendMessageToRecipient.bind(null, messagingEvent.sender.id))
+                            .catch(log.error);
                         
                     } else {
                         
                         log.debug(`Handling text message...`);
                         
-                        WitService.send(messagingEvent.message.text).then(response => {
-                            
-                            ResponseHandler.handle(response).then(messageToMessenger => {
-                                MessengerService.sendMessageToRecipient(messageToMessenger, messagingEvent.sender.id).catch(log.error);
-                            }).catch(log.error);
-                            
-                        }).catch(log.error);
+                        WitService.send(messagingEvent.message.text)
+                            .then(ResponseHandler.handle)
+                            .then(MessengerService.sendMessageToRecipient.bind(null, messagingEvent.sender.id))
+                            .catch(log.error);
                         
                     }
                     
@@ -69,18 +63,15 @@ router.post('/webhook', (req, res) => {
                     
                     log.debug('Handling postback...');
                     
-                    WitService.send(messagingEvent.postback.payload).then(response => {
-                        
-                        ResponseHandler.handle(response).then(messageToMessenger => {
-                            MessengerService.sendMessageToRecipient(messageToMessenger, messagingEvent.sender.id).catch(log.error);
-                        }).catch(log.error);
-                        
-                    }).catch(log.error);
+                    WitService.send(messagingEvent.postback.payload)
+                        .then(ResponseHandler.handle)
+                        .then(MessengerService.sendMessageToRecipient.bind(null, messagingEvent.sender.id))
+                        .catch(log.error);
                     
                 } else if (messagingEvent.optin) {
                     
                     log.debug('Handling optin...');
-                    MessengerService.sendMessageToRecipient({text: "Authentication successful"}, messagingEvent.sender.id);
+                    MessengerService.sendMessageToRecipient(messagingEvent.sender.id, {text: "Authentication successful"});
                     
                 }
                 
