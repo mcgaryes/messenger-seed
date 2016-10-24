@@ -25,8 +25,6 @@ class ResponseHandler {
                 
                 if (response.quickreplies) {
                     
-                    log.debug(`Handling response with type 'action'...`);
-                    
                     resolve(new QuickReplyMessage(response).message);
                     
                 } else if (response.msg) {
@@ -37,7 +35,7 @@ class ResponseHandler {
                 
             } else {
                 
-                reject('unknown wit response type');
+                reject('Unknown wit response type.');
                 
             }
             
